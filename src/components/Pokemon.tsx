@@ -23,6 +23,7 @@ const Pokemon: React.FC<PokemonProps> = ({ name, sprites, moveName }) => {
         const fetchMoveDetails = async () => {
             const response = await fetch(`https://pokeapi.co/api/v2/move/${moveName}`);
             const data = await response.json();
+            console.log('move data', data)
             setMoveDetails(data);
         };
 
@@ -41,7 +42,7 @@ const Pokemon: React.FC<PokemonProps> = ({ name, sprites, moveName }) => {
                     <h2>{name}</h2>
                     {moveDetails && (
                         <div>
-                            <span className="badge bg-primary">{moveName} : {moveDetails.power}</span>
+                            <span className="badge bg-primary">{moveName} : {moveDetails.power !== null ? moveDetails.power : 0}</span>
                         </div>
                     )}
                 </div>
